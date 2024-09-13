@@ -1,13 +1,13 @@
 // components/Footer.tsx
 import '../styles/footer.css';
-import myLogo from "../assets/logo/logo2.svg";
+import myLogo from "../assets/logo/logo4.png";
 
 export default function Footer() {
     return (
         <footer className="footer">
             <div className="footer-top">
                 <div className="footer-logo">
-                    <img src={myLogo} alt="LogoMarca" width={100} />
+                    <img src={myLogo} alt="LogoMarca"/>
                 </div>
                 <div className="footer-links">
                     <div>

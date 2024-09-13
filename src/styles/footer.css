@@ -1,4 +1,3 @@
-/* footer.css */
 .footer {
     background-color: var(--light-gray);
     padding: 2rem 1rem;
@@ -6,24 +5,30 @@
 
 .footer-top {
     display: flex;
-    gap: 4rem;
     align-items: flex-start;
-    flex-wrap: wrap; /* Para garantir que os itens sejam empilhados em telas menores */
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .footer-logo img {
-    width: 220px; /* Tamanho maior para a logo */
+    max-width: 100%;
+    width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding: 44px;
 }
 
 .footer-links {
     display: flex;
     justify-content: space-between;
-    gap: 11rem;
-    flex-wrap: wrap; /* Para permitir empilhamento em telas pequenas */
+    gap: 12rem;
+    flex-wrap: wrap;
 }
 
 .footer-links div {
-    text-align: left; /* Alinha os links à esquerda */
+    text-align: left;
 }
 
 .footer-links h4 {
@@ -52,14 +57,13 @@
 }
 
 .footer-bottom {
-    border-top: 1px solid #e4e4e4;
+    border-top: 1px solid #d7d7d7;
     padding-top: 1rem;
     text-align: center;
     font-size: 0.875rem;
     color: var(--second-text-color);
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .footer-top {
         flex-direction: column;
@@ -77,6 +81,6 @@
     }
 
     .footer-logo img {
-        width: 250px; /* Tamanho ajustado para telas menores */
+        width: 150px;
     }
 }

@@ -1,0 +1,11 @@
+# exemplo deu um netlify.toml
+[build]
+  command = "vite build"
+  functions = "netlify/functions"
+  publish = "dist"
+
+# Redirecionamento de todas as rotas para /index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

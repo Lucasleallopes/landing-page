@@ -5,24 +5,36 @@ import '../styles/button.css';
 import '../styles/index.css';
 import '../styles/footer.css'
 import '../styles/carrosel.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HeroRectangleOne from "../assets/images/rectangleOne.png";
 import HeroRectangleTwo from "../assets/images/rectangleTwo.png";
 import Close from "../assets/close.svg";
 import Menu from "../assets/hamburger.svg";
 import Button from '../components/Button.tsx';
-import myLogo from "../assets/logo/logo2.svg";
+import myLogo from "../assets/logo/logo4.png";
 import Footer from '../components/Footer.tsx';
 import TestimonialCarousel from '../components/TestimonialCarousel.tsx'
+import Card from '../components/Card.tsx';
 
 export default function Home() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+    useEffect(() => {
+        if (showMobileMenu) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+        return () => {
+            document.body.classList.remove('no-scroll');
+        };
+    }, [showMobileMenu]);
 
     return (
         <>
             <header className='container py-sm'>
                 <nav className="flex items-center justify-between">
-                    <img src={myLogo} alt="logo" className="logo" width={185} />
+                    <img src={myLogo} alt="logo" className="logo" width={100} />
                     <div className="desktop-only">
                         <ul className="flex gap-1">
                             <li>
@@ -105,93 +117,102 @@ export default function Home() {
                 </div>
             </section>
 
-            <section id='hero'>
-            <div className="container content">
-                <p className="desktop-only">
-                        Soluções
-                </p>
-                <h2>
-                    Sob medida para você
-                </h2>
-                <p>
-                    Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles, 
-                    veja tudo que pode ganhar com nossos serviços. 
-                </p>
-            </div>
-            </section>
 
+            <section id='hero'>
+                <div className="container content">
+                    <p className="desktop-only">
+                        Soluções
+                    </p>
+                    <h2>
+                        Sob medida para você
+                    </h2>
+                    <p>
+                        Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles,
+                        veja tudo que pode ganhar com nossos serviços.
+                    </p>
+                </div>
+            </section>
             <section id="cards" className="cards-section py-lg">
                 <div className="container grid center">
-                    <div className="card">
-                        <h3>Facilidade</h3>
-                        <p>Ideia matadora, nosso time já ganhou diversos eventos de inovação com nosso produto, entre eles podemos citar o CityFarm da FAG e Startup Garage.</p>
-                    </div>
-                    <div className="card">
-                        <h3>Inovação</h3>
-                        <p>Ideia matadora, nosso time já ganhou diversos eventos de inovação com nosso produto, entre eles podemos citar o CityFarm da FAG e Startup Garage.</p>
-                    </div>
-                    <div className="card">
-                        
-                        <h3>Tempo</h3>
-                        <p>Ideia matadora, nosso time já ganhou diversos eventos de inovação com nosso produto, entre eles podemos citar o CityFarm da FAG e Startup Garage.</p>
-                    </div>
+                    <Card 
+                        title="Facilidade" 
+                        description="Nosso sistema simplifica o acesso a dados climáticos, meteorológicos e fluviométricos das estações de produtores rurais, facilitando a visualização dessas informações de forma prática e acessível."
+                    />
+                    <Card 
+                        title="Inovação" 
+                        description="Com tecnologia satelital de ponta, o sistema traz inovação ao agronegócio, permitindo que os produtores recebam alertas em tempo real, otimizando suas decisões com base em dados precisos e integrados."
+                    />
+                    <Card 
+                        title="Tempo" 
+                        description="Agilidade é a chave: nosso sistema transmite dados atualizados rapidamente, permitindo que os produtores respondam de forma eficiente às mudanças climáticas e meteorológicas, economizando tempo precioso."
+                    />
                 </div>
             </section>
 
-            {/* <section id="cliente-importa" className="hero">
-            <div className="container content">
-                <p className="desktop-only">
-                        Conselho de quem conheçe
-                </p>
-                <h2>
-                    Cada cliente importa
-                </h2>
-                <p>
-                    Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles, 
-                    veja tudo que pode ganhar com nossos serviços. 
-                </p>
-            </div>
-            </section> */}
-
-        <section id="cliente-importa" className="hero">
-            <div className="container content">
-                <p className="desktop-only">Conselho de quem conheçe</p>
-                <h2>Cada cliente importa</h2>
-                <p>Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles.</p>
-                <TestimonialCarousel />
-            </div>
-        </section>
-
-            <section id='hero'>
-            <div className="container content">
-                <p className="desktop-only">
-                       Preços e planos
-                </p>
-                <h2>
-                   Nossos planos
-                </h2>
-                <p>
-                    Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles, 
-                    veja tudo que pode ganhar com nossos serviços. 
-                </p>
-            </div>
+            <section id="cliente-importa" className="hero">
+                <div className="container content">
+                    <p className="desktop-only">Conselho de quem conheçe</p>
+                    <h2>Cada cliente importa</h2>
+                    <p>Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles.</p>
+                    <TestimonialCarousel />
+                </div>
             </section>
 
-            {/* <section id='hero'>
-            <div className="container content">
-                <p className="desktop-only">
-                       Receba as melhores novidades
-                </p>
-                <h2>
-                   Junte-se a nós
-                </h2>
-                <p>
-                    Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles, 
-                    veja tudo que pode ganhar com nossos serviços. 
-                </p>
-            </div>
-            </section> */}
-        <Footer />            
+            <section id='hero'>
+                <div className="container content">
+                    <p className="desktop-only">
+                        Preços e planos
+                    </p>
+                    <h2>
+                        Nossos planos
+                    </h2>
+                    <p>
+                        Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles,
+                        veja tudo que pode ganhar com nossos serviços.
+                    </p>
+                </div>
+            </section>
+            <section id="pricing" className="pricing-section py-lg">
+                <div className="container grid center">
+                    <div className="card pricing-card">
+                        <h3>Básico</h3>
+                        <p>Baixe a ferramenta e comece a utilizar agora mesmo!</p>
+                        <h2>Grátis</h2>
+                        <Button text="Baixar agora" secondary/>
+                        <hr className="card-separator" />
+                        <ul>
+                            <li>Com anúncios</li>
+                            <li>Acesso a dados de até 2 estações</li>
+                            <li>Receba alertas básicos</li>
+                        </ul>
+                    </div>
+                    <div className="card pricing-card premium-card">
+                        <h3>Premium</h3>
+                        <p>Para quem deseja utilizar nossa ferramenta sem limitações!</p>
+                        <h2>R$ 19,90/mês</h2>
+                        <Button text="Experimente de graça"/>
+                        <hr className="card-separator" />
+                        <ul>
+                            <li>Sem interrupção de anúncios</li>
+                            <li>Acesso a dados ilimitados de estações</li>
+                            <li>Receba alertas personalizados e detalhados</li>
+                        </ul>
+                    </div>
+                    <div className="card pricing-card">
+                        <h3>Empresarial</h3>
+                        <p>Utilize nossa solução na sua empresa. Aprimore seu fluxo.</p>
+                        <h2>Personalizado</h2>
+                        <Button text="Baixar agora" secondary/>
+                        <hr className="card-separator" />
+                        <ul>
+                            <li>Com anúncios</li>
+                            <li>Acesso a dados de até 5 estações</li>
+                            <li>Receba alertas para múltiplas equipes</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <Footer />
         </>
     )
 }

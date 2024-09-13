@@ -40,10 +40,10 @@ nav {
 }
 
 .mobile-menu-content .btn-wrapper {
-  position: absolute; /* Posicionar o X no topo direito */
-  top: 1rem; /* Ajuste de acordo com o espaçamento desejado */
-  right: 1rem; /* Ajuste de acordo com o espaçamento desejado */
-  cursor: pointer; /* Cursor para indicar que é clicável */
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
 } 
 
 .mobile-menu-content ul {
@@ -75,4 +75,9 @@ nav {
   .mobile-menu-content {
     display: none;
   }
+}
+  
+.no-scroll {
+  overflow: hidden !important;  
+  height: 100%;
 }

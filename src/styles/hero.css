@@ -1,8 +1,13 @@
+#hero:first-of-type {
+    border-top: 0.125rem solid #e4e4e4;
+    min-height: 98vh;
+    display: flex;  
+    overflow: hidden;
+}
+
 #hero {
     background: var(--light-gray);
-    border-top: 0.125rem solid #e4e4e4;
-    min-height: 80vh;
-    display: flex;  
+    display: flex;
     overflow: hidden;
 }
 
@@ -74,6 +79,19 @@
     }
 }
 
+@media (min-width: 1280px) {
+    #hero:first-of-type {
+        border-top: none; /* Remove a borda para telas grandes */
+    }
+}
+
+/* @media (max-width: 1279px) {
+    #hero:first-of-type {
+        border-top: 0.125rem solid #e4e4e4;
+    }
+} */
+
+
 #cliente-importa {
     background-color: #46FF9C;
     padding: 2rem 0;
@@ -99,8 +117,3 @@
     color: var(--primary-color);
     font-weight: var(--fw-bold);
 }
-
-
-
-
-
