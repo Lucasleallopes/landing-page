@@ -37,6 +37,7 @@ nav {
   width: 100vw;
   height: 100vh;
   background: var(--bg-color);
+  overflow: hidden;
 }
 
 .mobile-menu-content .btn-wrapper {
@@ -76,8 +77,10 @@ nav {
     display: none;
   }
 }
-  
+
 .no-scroll {
-  overflow: hidden !important;  
-  height: 100%;
+  overflow: hidden !important;
+  height: 100vh;
+  position: fixed;
+  width: 100%;
 }

@@ -42,11 +42,12 @@ html {
     line-height: 1.6;
     color: var(--text-color);
     scroll-behavior: smooth;
+    overflow-x: hidden
 }
 
 body {
     background-color: var(--bg-color);
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 h1, h2, h3 {
