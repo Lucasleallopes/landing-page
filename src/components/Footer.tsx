@@ -1,4 +1,3 @@
-// components/Footer.tsx
 import '../styles/footer.css';
 import myLogo from "../assets/logo/logo4.png";
 
