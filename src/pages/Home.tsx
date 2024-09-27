@@ -189,7 +189,7 @@ export default function Home() {
                     <div className="card pricing-card premium-card">
                         <h3>Premium</h3>
                         <p>Para quem deseja utilizar nossa ferramenta sem limitações!</p>
-                        <h2>R$ 19,90/mês</h2>
+                        <h2>R$ 69,90/mês</h2>
                         <Button text="Experimente de graça"/>
                         <hr className="card-separator" />
                         <ul>
