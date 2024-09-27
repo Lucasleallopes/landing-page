@@ -205,8 +205,8 @@ export default function Home() {
                         <Button text="Baixar agora" secondary/>
                         <hr className="card-separator" />
                         <ul>
-                            <li>Com anúncios</li>
-                            <li>Acesso a dados de até 5 estações</li>
+                            <li>Sem Anuncios</li>
+                            <li>Acesso a dados de estações personalizados</li>
                             <li>Receba alertas para múltiplas equipes</li>
                         </ul>
                     </div>
