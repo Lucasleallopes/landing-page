@@ -114,6 +114,7 @@ ul {
     justify-content: center;
     align-items: stretch;
     text-align: center;
+    margin-bottom: 8rem;
 }
 
 .card {
@@ -164,6 +165,7 @@ ul {
     gap: 1rem;
     flex-wrap: wrap;
     padding-bottom: 50vh;
+    margin-bottom: 7rem;
 }
 
 .pricing-card {
