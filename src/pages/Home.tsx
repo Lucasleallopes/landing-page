@@ -3,8 +3,8 @@ import '../styles/header.css';
 import "../styles/hero.css";
 import '../styles/button.css';
 import '../styles/index.css';
-import '../styles/footer.css'
-import '../styles/carrosel.css'
+import '../styles/footer.css';
+import '../styles/carrosel.css';
 import { useState, useEffect } from 'react';
 import HeroRectangleOne from "../assets/images/rectangleOne.png";
 import HeroRectangleTwo from "../assets/images/rectangleTwo.png";
@@ -13,8 +13,9 @@ import Menu from "../assets/hamburger.svg";
 import Button from '../components/Button.tsx';
 import myLogo from "../assets/logo/logo4.png";
 import Footer from '../components/Footer.tsx';
-import TestimonialCarousel from '../components/TestimonialCarousel.tsx'
-import Card from '../components/Card.tsx';
+import TestimonialCarousel from '../components/TestimonialCarousel.tsx';
+import CardSoluction from '../components/CardSoluction.tsx';
+import CardPricing from '../components/CardPricing.tsx';
 
 export default function Home() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -30,6 +31,28 @@ export default function Home() {
         };
     }, [showMobileMenu]);
 
+    const handleScroll = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
+        event.preventDefault();
+
+        if (showMobileMenu) {
+            setShowMobileMenu(false);
+        }
+
+        setTimeout(() => {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                const headerOffset = 100;
+                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth',
+                });
+            }
+        }, 100);
+    };
+
     return (
         <>
             <header className='container py-sm'>
@@ -38,19 +61,19 @@ export default function Home() {
                     <div className="desktop-only">
                         <ul className="flex gap-1">
                             <li>
-                                <a href="#">Home</a>
+                                <a href="#hero" onClick={(e) => handleScroll(e, "hero")}>Home</a>
                             </li>
                             <li>
-                                <a href="#solution">Soluções</a>
+                                <a href="#solucao" onClick={(e) => handleScroll(e, "solucao")}>Soluções</a>
                             </li>
                             <li>
-                                <a href="#testimonials">Depoimentos</a>
+                                <a href="#depoimentos" onClick={(e) => handleScroll(e, "depoimentos")}>Depoimentos</a>
                             </li>
                             <li>
-                                <a href="#pricing">Preços</a>
+                                <a href="#precos" onClick={(e) => handleScroll(e, "precos")}>Preços</a>
                             </li>
                             <li>
-                                <a href="#contact">Contato</a>
+                                <a href="#contato" onClick={(e) => handleScroll(e, "contato")}>Contato</a>
                             </li>
                         </ul>
                     </div>
@@ -61,24 +84,24 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="mobile-menu">
-                        {showMobileMenu ?
+                        {showMobileMenu ? (
                             <div className="mobile-menu-content">
                                 <div className="container flex">
                                     <ul>
                                         <li>
-                                            <a href="#">Home</a>
+                                            <a href="#hero" onClick={(e) => handleScroll(e, "hero")}>Home</a>
                                         </li>
                                         <li>
-                                            <a href="#solucao">Soluções</a>
+                                            <a href="#solucao" onClick={(e) => handleScroll(e, "solucao")}>Soluções</a>
                                         </li>
                                         <li>
-                                            <a href="#depoimentos">Depoimentos</a>
+                                            <a href="#depoimentos" onClick={(e) => handleScroll(e, "depoimentos")}>Depoimentos</a>
                                         </li>
                                         <li>
-                                            <a href="#precos">Preços</a>
+                                            <a href="#precos" onClick={(e) => handleScroll(e, "precos")}>Preços</a>
                                         </li>
                                         <li>
-                                            <a href="#contato">Contato</a>
+                                            <a href="#contato" onClick={(e) => handleScroll(e, "contato")}>Contato</a>
                                         </li>
                                         <li>
                                             <a className="reverse-color" href="#">Login</a>
@@ -89,23 +112,22 @@ export default function Home() {
                                     </span>
                                 </div>
                             </div>
-                            :
-                            <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper" >
+                        ) : (
+                            <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper">
                                 <img src={Menu} alt="ícone menu" width={24} height={24} />
                             </span>
-                        }
+                        )}
                     </div>
                 </nav>
             </header>
+
             <section id="hero">
                 <span className="desktop-only">
-                    <img src={HeroRectangleTwo} alt="Retangulo um tela inicial" />
+                    <img src={HeroRectangleTwo} alt="Retângulo um tela inicial" />
                 </span>
-                <img src={HeroRectangleOne} alt="Retangulo dois tela inicial" />
+                <img src={HeroRectangleOne} alt="Retângulo dois tela inicial" />
                 <div className="container content">
-                    <p className="desktop-only">
-                        Bem-vindo(a)
-                    </p>
+                    <p className="desktop-only">Bem-vindo(a)</p>
                     <h1>Monitoramento ambiental avançado para áreas rurais</h1>
                     <p>Mantenha-se informado sobre as condições climáticas e níveis fluviométricos com precisão em tempo real. Nossa solução foi projetada para garantir que você esteja sempre preparado para qualquer mudança ambiental, ajudando a proteger suas operações e propriedades rurais 🌱</p>
                     <div className="flex gap-1">
@@ -117,102 +139,33 @@ export default function Home() {
                 </div>
             </section>
 
-
-            <section id='hero'>
-                <div className="container content">
-                    <p className="desktop-only">
-                        Soluções
-                    </p>
-                    <h2>
-                        Sob medida para você
-                    </h2>
-                    <p>
-                        Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles,
-                        veja tudo que pode ganhar com nossos serviços.
-                    </p>
+            <section id="hero">
+                <div id="solucao" className="container content">
+                    <p className="desktop-only">Soluções</p>
+                    <h2>Sob medida para você</h2>
+                    <p>Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles. Veja tudo que pode ganhar com nossos serviços.</p>
                 </div>
             </section>
-            <section id="cards" className="cards-section py-lg">
-                <div className="container grid center">
-                    <Card 
-                        title="Facilidade" 
-                        description="Nosso sistema simplifica o acesso a dados climáticos, meteorológicos e fluviométricos das estações de produtores rurais, facilitando a visualização dessas informações de forma prática e acessível."
-                    />
-                    <Card 
-                        title="Inovação" 
-                        description="Com tecnologia satelital de ponta, o sistema traz inovação ao agronegócio, permitindo que os produtores recebam alertas em tempo real, otimizando suas decisões com base em dados precisos e integrados."
-                    />
-                    <Card 
-                        title="Tempo" 
-                        description="Agilidade é a chave: nosso sistema transmite dados atualizados rapidamente, permitindo que os produtores respondam de forma eficiente às mudanças climáticas e meteorológicas, economizando tempo precioso."
-                    />
-                </div>
-            </section>
+            <CardSoluction />
 
             <section id="cliente-importa" className="hero">
                 <div className="container content">
-                    <p className="desktop-only">Conselho de quem conheçe</p>
+                    <p className="desktop-only">Conselho de quem conhece</p>
                     <h2>Cada cliente importa</h2>
-                    <p>Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles.</p>
+                    <p id="depoimentos">Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles.</p>
                     <TestimonialCarousel />
                 </div>
             </section>
 
-            <section id='hero'>
+            <section id="hero">
                 <div className="container content">
-                    <p className="desktop-only">
-                        Preços e planos
-                    </p>
-                    <h2>
-                        Nossos planos
-                    </h2>
-                    <p>
-                        Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles,
-                        veja tudo que pode ganhar com nossos serviços.
-                    </p>
+                    <p className="desktop-only">Preços e planos</p>
+                    <h2>Nossos planos</h2>
+                    <p id="precos">Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles. Veja tudo que pode ganhar com nossos serviços.</p>
                 </div>
             </section>
-            <section id="pricing" className="pricing-section py-lg">
-                <div className="container grid center">
-                    <div className="card pricing-card">
-                        <h3>Básico</h3>
-                        <p>Baixe a ferramenta e comece a utilizar agora mesmo!</p>
-                        <h2>Grátis</h2>
-                        <Button text="Baixar agora" secondary/>
-                        <hr className="card-separator" />
-                        <ul>
-                            <li>Com anúncios</li>
-                            <li>Acesso a dados de até 2 estações</li>
-                            <li>Receba alertas básicos</li>
-                        </ul>
-                    </div>
-                    <div className="card pricing-card premium-card">
-                        <h3>Premium</h3>
-                        <p>Para quem deseja utilizar nossa ferramenta sem limitações!</p>
-                        <h2>R$ 69,90/mês</h2>
-                        <Button text="Experimente de graça"/>
-                        <hr className="card-separator" />
-                        <ul>
-                            <li>Sem interrupção de anúncios</li>
-                            <li>Acesso a dados ilimitados de estações</li>
-                            <li>Receba alertas personalizados e detalhados</li>
-                        </ul>
-                    </div>
-                    <div className="card pricing-card">
-                        <h3>Empresarial</h3>
-                        <p>Utilize nossa solução na sua empresa. Aprimore seu fluxo.</p>
-                        <h2>Personalizado</h2>
-                        <Button text="Baixar agora" secondary/>
-                        <hr className="card-separator" />
-                        <ul>
-                            <li>Sem Anuncios</li>
-                            <li>Acesso a dados de estações personalizados</li>
-                            <li>Receba alertas para múltiplas equipes</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+            <CardPricing />
             <Footer />
         </>
-    )
+    );
 }
