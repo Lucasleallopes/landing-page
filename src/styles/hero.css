@@ -101,11 +101,6 @@
     margin: 0 auto;
 }
 
-#cliente-importa .content>div {
-    width: fit-content;
-    align-self: center;
-    margin-bottom: 0;
-}
 
 #cliente-importa .desktop-only {
     color: var(--primary-color);
