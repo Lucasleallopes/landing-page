@@ -9,6 +9,7 @@
     background: var(--light-gray);
     display: flex;
     overflow: hidden;
+    padding: 1rem;
 }
 
 #hero>img {
