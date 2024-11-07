@@ -6,7 +6,6 @@
 }
 
 #hero {
-    background: var(--light-gray);
     display: flex;
     overflow: hidden;
 }
