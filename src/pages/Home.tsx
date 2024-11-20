@@ -58,29 +58,38 @@ export default function Home() {
 
     const handleMail = () => {
         setStatus('');
-        fetch('/api', {
+    
+        // Defina a URL base da API com base no ambiente
+        const apiUrl =
+            window.location.hostname === 'localhost'
+                ? '/api' // Para ambiente de desenvolvimento
+                : 'https://southamerica-east1-projeto-lambda-email.cloudfunctions.net/projeto-arch-4'; // Para produção
+    
+        fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ5NzQwYTcwYjA5NzJkY2NmNzVmYTg4YmM1MjliZDE2YTMwNTczYmQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NDY4NDkzNzUyODM0NzU3MjMxIiwiaGQiOiJtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWwiOiJscmxsb3Blc0BtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJQdEdvSl9mZzZ1RXZVRFJVY3EyZmdnIiwibmJmIjoxNzMyMTQwNDMyLCJpYXQiOjE3MzIxNDA3MzIsImV4cCI6MTczMjE0NDMzMiwianRpIjoiZTZiZTMxYzBhZjc4MDNhYmIwOTcyYTFhMzg5ODg4ZThlMzYyNGNlZiJ9.ZQbnn2iYR62LptT0biGhccMEhL6pdllueHjNfLSjPPRgPFSjBwuTbMYkahe4pPBuOu68LNjUwQ5gTLfdS3xGxexZvxSRWiiPQL_mUsUP89uLgPMT-GsBmYC-AEOJatoG7-DcHWbYD5VB0gXz-ZRFyXLU77u23GLh7kEsC8S81pbtds4jkmBmMw6SORkIzra0dUPINUnVnkfbnUUcDHnR320GrozMxvoZ-LdgYCHzgdT9SS4dmiiX_WWOlTLq_4xCd3mQ3K4nEJ1hFOJTHxY2o59X8ak02me74d7Kzn5XNNsG-NeBkM5TIlZnQazIeskM-4zSYSb41bMvlq8KYbB5SQ'
+                'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ5NzQwYTcwYjA5NzJkY2NmNzVmYTg4YmM1MjliZDE2YTMwNTczYmQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NDY4NDkzNzUyODM0NzU3MjMxIiwiaGQiOiJtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWwiOiJscmxsb3Blc0BtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJQdEdvSl9mZzZ1RXZVRFJVY3EyZmdnIiwibmJmIjoxNzMyMTQwNDMyLCJpYXQiOjE3MzIxNDA3MzIsImV4cCI6MTczMjE0NDMzMiwianRpIjoiZTZiZTMxYzBhZjc4MDNhYmIwOTcyYTFhMzg5ODg4ZThlMzYyNGNlZiJ9.ZQbnn2iYR62LptT0biGhccMEhL6pdllueHjNfLSjPPRgPFSjBwuTbMYkahe4pPBuOu68LNjUwQ5gTLfdS3xGxexZvxSRWiiPQL_mUsUP89uLgPMT-GsBmYC-AEOJatoG7-DcHWbYD5VB0gXz-ZRFyXLU77u23GLh7kEsC8S81pbtds4jkmBmMw6SORkIzra0dUPINUnVnkfbnUUcDHnR320GrozMxvoZ-LdgYCHzgdT9SS4dmiiX_WWOlTLq_4xCd3mQ3K4nEJ1hFOJTHxY2o59X8ak02me74d7Kzn5XNNsG-NeBkM5TIlZnQazIeskM-4zSYSb41bMvlq8KYbB5SQ',
             },
             body: JSON.stringify({
                 email,
                 message,
             }),
         })
-            .then(response => {
+            .then((response) => {
                 if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text) });
+                    return response.text().then((text) => {
+                        throw new Error(text);
+                    });
                 }
                 return response.text();
             })
-            .then(_data => {
+            .then((_data) => {
                 setStatus('Email enviado com sucesso!');
                 setEmail('');
                 setMessage('');
             })
-            .catch(error => {
+            .catch((error) => {
                 setStatus('Erro ao enviar o email.');
                 console.error('Erro:', error);
             });
