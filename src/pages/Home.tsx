@@ -58,10 +58,7 @@ export default function Home() {
 
     const handleMail = () => {
         setStatus('');
-        fetch(process.env.NODE_ENV === 'production' 
-            ? 'https://southamerica-east1-projeto-lambda-email.cloudfunctions.net/projeto-arch-4' 
-            : '/api', {
-        
+        fetch('/api', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
