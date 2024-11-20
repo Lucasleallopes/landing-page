@@ -58,7 +58,10 @@ export default function Home() {
 
     const handleMail = () => {
         setStatus('');
-        fetch('/api', {
+        fetch(process.env.NODE_ENV === 'production' 
+            ? 'https://southamerica-east1-projeto-lambda-email.cloudfunctions.net/projeto-arch-4' 
+            : '/api', {
+        
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -238,7 +241,7 @@ export default function Home() {
                         <p className={status.includes('sucesso') ? 'success-message' : 'error-message'}>
                             {status}
                         </p>
-                    )}
+                    )}  
                 </div>
             </section>
         <Footer />
