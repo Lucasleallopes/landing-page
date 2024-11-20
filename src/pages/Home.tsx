@@ -19,6 +19,9 @@ import CardPricing from '../components/CardPricing.tsx';
 
 export default function Home() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [status, setStatus] = useState('');
 
     useEffect(() => {
         if (showMobileMenu) {
@@ -51,6 +54,36 @@ export default function Home() {
                 });
             }
         }, 100);
+    };
+
+    const handleMail = () => {
+        setStatus('');
+        fetch('/api', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ5NzQwYTcwYjA5NzJkY2NmNzVmYTg4YmM1MjliZDE2YTMwNTczYmQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NDY4NDkzNzUyODM0NzU3MjMxIiwiaGQiOiJtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWwiOiJscmxsb3Blc0BtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJQdEdvSl9mZzZ1RXZVRFJVY3EyZmdnIiwibmJmIjoxNzMyMTQwNDMyLCJpYXQiOjE3MzIxNDA3MzIsImV4cCI6MTczMjE0NDMzMiwianRpIjoiZTZiZTMxYzBhZjc4MDNhYmIwOTcyYTFhMzg5ODg4ZThlMzYyNGNlZiJ9.ZQbnn2iYR62LptT0biGhccMEhL6pdllueHjNfLSjPPRgPFSjBwuTbMYkahe4pPBuOu68LNjUwQ5gTLfdS3xGxexZvxSRWiiPQL_mUsUP89uLgPMT-GsBmYC-AEOJatoG7-DcHWbYD5VB0gXz-ZRFyXLU77u23GLh7kEsC8S81pbtds4jkmBmMw6SORkIzra0dUPINUnVnkfbnUUcDHnR320GrozMxvoZ-LdgYCHzgdT9SS4dmiiX_WWOlTLq_4xCd3mQ3K4nEJ1hFOJTHxY2o59X8ak02me74d7Kzn5XNNsG-NeBkM5TIlZnQazIeskM-4zSYSb41bMvlq8KYbB5SQ'
+            },
+            body: JSON.stringify({
+                email,
+                message,
+            }),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text) });
+                }
+                return response.text();
+            })
+            .then(_data => {
+                setStatus('Email enviado com sucesso!');
+                setEmail('');
+                setMessage('');
+            })
+            .catch(error => {
+                setStatus('Erro ao enviar o email.');
+                console.error('Erro:', error);
+            });
     };
 
     return (
@@ -157,7 +190,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section id="hero">
+            <section id='hero'>
                 <div className="container content">
                     <p className="desktop-only">Preços e planos</p>
                     <h2>Nossos planos</h2>
@@ -165,7 +198,50 @@ export default function Home() {
                 </div>
             </section>
             <CardPricing />
-            <Footer />
-        </>
+            
+            <section id="hero">
+                <div id="contato" className="container content">
+                    <p className="desktop-only">Envie sua dúvida</p>
+                    <h2>Entre em Contato</h2>
+                    <p>
+                        Entre em contato, estamos dispostos a tirar qualquer dúvida, 
+                        seja um orçamento, uma dúvida técnica de algum de nossos produtos. 
+                        Estamos à disposição para responder.😎
+                    </p>
+
+                    <form onSubmit={(e) => {e.preventDefault(); handleMail();}}>
+                        <div>
+                            <label htmlFor="email">Seu melhor email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="message">Mensagem</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <button type="submit">Enviar Email</button>
+                    </form>
+                    
+                    {status && (
+                        <p className={status.includes('sucesso') ? 'success-message' : 'error-message'}>
+                            {status}
+                        </p>
+                    )}
+                </div>
+            </section>
+        <Footer />
+    </>
     );
 }
