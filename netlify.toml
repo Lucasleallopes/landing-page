@@ -1,3 +1,4 @@
+# exemplo deu um netlify.toml
 [build]
   command = "vite build"
   functions = "netlify/functions"
@@ -8,10 +9,3 @@
   from = "/*"
   to = "/index.html"
   status = 200
-
-# Proxy para o endpoint do Google Cloud Functions
-[[redirects]]
-  from = "/api/*"
-  to = "https://southamerica-east1-projeto-lambda-email.cloudfunctions.net/projeto-arch-4/:splat"
-  status = 200
-  force = true

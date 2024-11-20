@@ -62,7 +62,7 @@ export default function Home() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ5NzQwYTcwYjA5NzJkY2NmNzVmYTg4YmM1MjliZDE2YTMwNTczYmQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NDY4NDkzNzUyODM0NzU3MjMxIiwiaGQiOiJtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWwiOiJscmxsb3Blc0BtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJQdEdvSl9mZzZ1RXZVRFJVY3EyZmdnIiwibmJmIjoxNzMyMTQwNDMyLCJpYXQiOjE3MzIxNDA3MzIsImV4cCI6MTczMjE0NDMzMiwianRpIjoiZTZiZTMxYzBhZjc4MDNhYmIwOTcyYTFhMzg5ODg4ZThlMzYyNGNlZiJ9.ZQbnn2iYR62LptT0biGhccMEhL6pdllueHjNfLSjPPRgPFSjBwuTbMYkahe4pPBuOu68LNjUwQ5gTLfdS3xGxexZvxSRWiiPQL_mUsUP89uLgPMT-GsBmYC-AEOJatoG7-DcHWbYD5VB0gXz-ZRFyXLU77u23GLh7kEsC8S81pbtds4jkmBmMw6SORkIzra0dUPINUnVnkfbnUUcDHnR320GrozMxvoZ-LdgYCHzgdT9SS4dmiiX_WWOlTLq_4xCd3mQ3K4nEJ1hFOJTHxY2o59X8ak02me74d7Kzn5XNNsG-NeBkM5TIlZnQazIeskM-4zSYSb41bMvlq8KYbB5SQ',
+                'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ5NzQwYTcwYjA5NzJkY2NmNzVmYTg4YmM1MjliZDE2YTMwNTczYmQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NDY4NDkzNzUyODM0NzU3MjMxIiwiaGQiOiJtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWwiOiJscmxsb3Blc0BtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJNM3pDUUxNdThoMF9fVWdfaFAweXBnIiwibmJmIjoxNzMyMTQzOTcyLCJpYXQiOjE3MzIxNDQyNzIsImV4cCI6MTczMjE0Nzg3MiwianRpIjoiMjFjMWVmY2JkZjU2OGQ2NGFkMWVmNWMzMjhiYzJmZTU1YTY3ZTcwMSJ9.Hpbsw51tCtqXFQG6_asXpZJvlGYGvkL5ma43LUHhLhUePrk8NLY8wsszsac3V3jBPda0kwEmo9uymC6T8ltGsdBS6N81sBD36FpRPtMET3OpS2b7qTLzxkvuvG8DaYis7xMa1b4hoBcvqyC71XMZxwSq4LB3GixZxzSyaVVWITnSjvgJEVxRnjfHVTCyl3ZAVya896vDcYQPwbPWBBNPpfJSnTUbM_j5xl5ROsYqqUR9fAMw_Ao8zJu_dmK0rmt7Az-M47rsJJIjcStv3Jefg03YdWHVjNA6c7piVCjNAM1juyS-bVyXq3iuhaMbElPvkQ1zs9VUS2MAR422em2euw',
             },
             body: JSON.stringify({
                 email,
@@ -161,7 +161,7 @@ export default function Home() {
                     <img src={HeroRectangleTwo} alt="Retângulo um tela inicial" />
                 </span>
                 <img src={HeroRectangleOne} alt="Retângulo dois tela inicial" />
-                <div className="container content">
+                <div className="container content"> 
                     <p className="desktop-only">Bem-vindo(a)</p>
                     <h1>Monitoramento ambiental avançado para áreas rurais</h1>
                     <p>Mantenha-se informado sobre as condições climáticas e níveis fluviométricos com precisão em tempo real. Nossa solução foi projetada para garantir que você esteja sempre preparado para qualquer mudança ambiental, ajudando a proteger suas operações e propriedades rurais 🌱</p>
