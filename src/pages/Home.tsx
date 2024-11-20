@@ -58,14 +58,7 @@ export default function Home() {
 
     const handleMail = () => {
         setStatus('');
-    
-        // Defina a URL base da API com base no ambiente
-        const apiUrl =
-            window.location.hostname === 'localhost'
-                ? '/api' // Para ambiente de desenvolvimento
-                : 'https://southamerica-east1-projeto-lambda-email.cloudfunctions.net/projeto-arch-4'; // Para produção
-    
-        fetch(apiUrl, {
+        fetch('/api', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
