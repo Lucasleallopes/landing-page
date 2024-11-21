@@ -16,12 +16,10 @@ import Footer from '../components/Footer.tsx';
 import TestimonialCarousel from '../components/TestimonialCarousel.tsx';
 import CardSoluction from '../components/CardSoluction.tsx';
 import CardPricing from '../components/CardPricing.tsx';
+import ContactForm from '../components/ContactForm.tsx';
 
 export default function Home() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
-    const [status, setStatus] = useState('');
 
     useEffect(() => {
         if (showMobileMenu) {
@@ -54,38 +52,6 @@ export default function Home() {
                 });
             }
         }, 100);
-    };
-
-    const handleMail = () => {
-        setStatus('');
-        fetch('/api', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ5NzQwYTcwYjA5NzJkY2NmNzVmYTg4YmM1MjliZDE2YTMwNTczYmQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NDY4NDkzNzUyODM0NzU3MjMxIiwiaGQiOiJtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWwiOiJscmxsb3Blc0BtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJNM3pDUUxNdThoMF9fVWdfaFAweXBnIiwibmJmIjoxNzMyMTQzOTcyLCJpYXQiOjE3MzIxNDQyNzIsImV4cCI6MTczMjE0Nzg3MiwianRpIjoiMjFjMWVmY2JkZjU2OGQ2NGFkMWVmNWMzMjhiYzJmZTU1YTY3ZTcwMSJ9.Hpbsw51tCtqXFQG6_asXpZJvlGYGvkL5ma43LUHhLhUePrk8NLY8wsszsac3V3jBPda0kwEmo9uymC6T8ltGsdBS6N81sBD36FpRPtMET3OpS2b7qTLzxkvuvG8DaYis7xMa1b4hoBcvqyC71XMZxwSq4LB3GixZxzSyaVVWITnSjvgJEVxRnjfHVTCyl3ZAVya896vDcYQPwbPWBBNPpfJSnTUbM_j5xl5ROsYqqUR9fAMw_Ao8zJu_dmK0rmt7Az-M47rsJJIjcStv3Jefg03YdWHVjNA6c7piVCjNAM1juyS-bVyXq3iuhaMbElPvkQ1zs9VUS2MAR422em2euw',
-            },
-            body: JSON.stringify({
-                email,
-                message,
-            }),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    return response.text().then((text) => {
-                        throw new Error(text);
-                    });
-                }
-                return response.text();
-            })
-            .then((_data) => {
-                setStatus('Email enviado com sucesso!');
-                setEmail('');
-                setMessage('');
-            })
-            .catch((error) => {
-                setStatus('Erro ao enviar o email.');
-                console.error('Erro:', error);
-            });
     };
 
     return (
@@ -201,46 +167,9 @@ export default function Home() {
             </section>
             <CardPricing />
             
-            <section id="hero">
-                <div id="contato" className="container content">
-                    <p className="desktop-only">Envie sua dúvida</p>
-                    <h2>Entre em Contato</h2>
-                    <p>
-                        Entre em contato, estamos dispostos a tirar qualquer dúvida, 
-                        seja um orçamento, uma dúvida técnica de algum de nossos produtos. 
-                        Estamos à disposição para responder.😎
-                    </p>
-
-                    <form onSubmit={(e) => {e.preventDefault(); handleMail();}}>
-                        <div>
-                            <label htmlFor="email">Seu melhor email</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="message">Mensagem</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <button type="submit">Enviar Email</button>
-                    </form>
-                    
-                    {status && (
-                        <p className={status.includes('sucesso') ? 'success-message' : 'error-message'}>
-                            {status}
-                        </p>
-                    )}  
+            <section id="hero" className="container content">
+                <div id="contato">
+                 <ContactForm />
                 </div>
             </section>
         <Footer />

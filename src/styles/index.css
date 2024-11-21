@@ -263,7 +263,7 @@ form {
     padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 100px;
+    margin-bottom: 20px;
 }
 
 form div {
@@ -330,15 +330,19 @@ form textarea:focus {
 }
 
 .success-message {
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
     font-size: var(--fs-sm);
     font-weight: var(--fw-bold);
+    text-align: center; /* Centers the message */
+    margin-bottom: 50px; /* Ensures proper spacing from the foote r */
 }
 
 .error-message {
-    color: red;
+    color: red !important;
     font-size: var(--fs-sm);
     font-weight: var(--fw-bold);
+    text-align: center; /* Centers the message */
+    margin-bottom: 20px; /* Ensures proper spacing from the footer */
 }
 
 @media (max-width: 768px) {
@@ -350,4 +354,14 @@ form textarea:focus {
         font-size: var(--fs-sm);
         padding: 0.75rem;
     }
+}
+#contato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Garante que ocupa toda a altura da viewport */
+    padding: 2rem; /* Espaçamento interno */
+    text-align: center;
+    background-color: var(--bg-color); /* Altere a cor de fundo se necessário */
 }
