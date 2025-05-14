@@ -54,6 +54,9 @@ export default function Home() {
         }, 100);
     };
 
+    // URL usado pelo usuário para login e cadastro
+    const authUrl = "https://verdex-f8d3b.firebaseapp.com/cadastro";
+
     return (
         <>
             <header className='container py-sm'>
@@ -80,8 +83,10 @@ export default function Home() {
                     </div>
                     <div className="desktop-only">
                         <div className="flex items-center">
-                            <a className="reverse-color ml-lg" href="">Login</a>
-                            <Button text="Cadastre-se" />
+                            {/* Botão de login com link personalizado */}
+                            <a className="reverse-color ml-lg" href={authUrl}>Login</a>
+                            {/* Botão de cadastro com link personalizado */}
+                            <a href={authUrl} className="ml-sm"><Button text="Cadastre-se" /></a>
                         </div>
                     </div>
                     <div className="mobile-menu">
@@ -104,8 +109,9 @@ export default function Home() {
                                         <li>
                                             <a href="#contato" onClick={(e) => handleScroll(e, "contato")}>Contato</a>
                                         </li>
+                                        {/* Botão de login com link personalizado (mobile) */}
                                         <li>
-                                            <a className="reverse-color" href="#">Login</a>
+                                            <a className="reverse-color" href={authUrl}>Login</a>
                                         </li>
                                     </ul>
                                     <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper">
@@ -132,7 +138,8 @@ export default function Home() {
                     <h1>Monitoramento ambiental avançado para áreas rurais</h1>
                     <p>Mantenha-se informado sobre as condições climáticas e níveis fluviométricos com precisão em tempo real. Nossa solução foi projetada para garantir que você esteja sempre preparado para qualquer mudança ambiental, ajudando a proteger suas operações e propriedades rurais 🌱</p>
                     <div className="flex gap-1">
-                        <span><Button text="Cadastre-se" /></span>
+                        {/* Botão de cadastro com link personalizado (hero) */}
+                        <a href={authUrl}><Button text="Cadastre-se" /></a>
                         <span className="desktop-only">
                             <Button text="Veja mais" secondary />
                         </span>
