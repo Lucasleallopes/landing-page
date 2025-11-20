@@ -8,32 +8,40 @@ export default function ContactForm() {
 
     const handleMail = () => {
         setStatus('');
-        fetch('/api', {
+        fetch('https://formsubmit.co/ajax/verdexmonitoramento@gmail.com', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ5NzQwYTcwYjA5NzJkY2NmNzVmYTg4YmM1MjliZDE2YTMwNTczYmQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NDY4NDkzNzUyODM0NzU3MjMxIiwiaGQiOiJtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWwiOiJscmxsb3Blc0BtaW5oYS5mYWcuZWR1LmJyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJuTnJxeENjNVI1bUZ6TmtiRVJhMjNRIiwibmJmIjoxNzMyMTUxMzkwLCJpYXQiOjE3MzIxNTE2OTAsImV4cCI6MTczMjE1NTI5MCwianRpIjoiMjVhNTViODU4Y2Y2MWZiNmE2MWY2MTUxMzVmNmFhNmRlNDg5NzBjZSJ9.iBp2H_ESMGmjQPwX1lf8xhyLpuXcib00PTWwYfPY9tZQ0-wU-ZZ3wJ2B9ZRKGMI5l5SbEWUtpVY7vVl58GGUCGlfA9ThpS5vf3QG404Kt65Qjd8wUwYleIJhxCqen3xlFv5AIcvSJ27fgy1mYLPArfhHz3us7AWKpLk1FUw3oSuS9zx5hvJQptE8YKBpPCExxl3H3R0n_DVHePzY51BumRlVEQn_QuVV1uI96RknPr6LD1Rd1u_7sVpb6nZ3ZRzPGxIgbIkqICSyQn486MgYLPW2Cd-_Gt2kGYY7hjIfypWNZerL5KtCrlJKslPmc52ztOJYlJJWhsKtMyu9MTNX2g',
+                Accept: 'application/json',
             },
             body: JSON.stringify({
                 email,
                 message,
+                _subject: 'Novo contato via landing page',
+                _captcha: 'false',
             }),
         })
             .then((response) => {
                 if (!response.ok) {
-                    return response.text().then((text) => {
-                        throw new Error(text);
-                    });
+                    return response
+                        .json()
+                        .catch(() => ({}))
+                        .then((data) => {
+                            const errorMessage = typeof data?.message === 'string'
+                                ? data.message
+                                : 'Erro ao enviar o email.';
+                            throw new Error(errorMessage);
+                        });
                 }
-                return response.text();
+                return response.json();
             })
-            .then((_data) => {
+            .then(() => {
                 setStatus('Email enviado com sucesso!');
                 setEmail('');
                 setMessage('');
             })
             .catch((error) => {
-                setStatus('Erro ao enviar o email.');
+                setStatus(error.message || 'Erro ao enviar o email.');
                 console.error('Erro:', error);
             });
     };
