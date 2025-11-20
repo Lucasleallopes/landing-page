@@ -30,44 +30,72 @@ const testimonials = [
 
 const TestimonialCarousel: React.FC = () => {
     const carouselRef = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+    const duplicatedTestimonials = [...testimonials, ...testimonials];
 
     useEffect(() => {
         const carousel = carouselRef.current;
+        const content = contentRef.current;
+        if (!carousel || !content) return;
 
-        if (!carousel) return;
+        const getLoopWidth = () => content.scrollWidth / 2;
 
-        let animationFrameId: number;
-        const scrollSpeed = 0.5;
+        let loopWidth = getLoopWidth();
+        let offset = 0;
+        const scrollSpeed = 3; // pixels per frame
+        let animationFrameId: number | null = null;
 
-        const scroll = () => {
-            if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-                carousel.scrollLeft = carousel.scrollLeft - carousel.scrollWidth / 2;
+        const step = () => {
+            if (loopWidth <= 0) {
+                animationFrameId = requestAnimationFrame(step);
+                return;
             }
-            carousel.scrollLeft += scrollSpeed;
-            animationFrameId = requestAnimationFrame(scroll);
+
+            offset += scrollSpeed;
+            if (offset >= loopWidth) {
+                offset -= loopWidth;
+            }
+
+            content.style.transform = `translateX(-${offset}px)`;
+            animationFrameId = requestAnimationFrame(step);
         };
 
-        animationFrameId = requestAnimationFrame(scroll);
-
-        const handleMouseEnter = () => cancelAnimationFrame(animationFrameId);
-        const handleMouseLeave = () => {
-            animationFrameId = requestAnimationFrame(scroll);
+        const startScroll = () => {
+            if (animationFrameId !== null) return;
+            animationFrameId = requestAnimationFrame(step);
         };
 
-        carousel.addEventListener('mouseenter', handleMouseEnter);
-        carousel.addEventListener('mouseleave', handleMouseLeave);
+        const stopScroll = () => {
+            if (animationFrameId === null) return;
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        };
+
+        const handleResize = () => {
+            loopWidth = getLoopWidth();
+            if (loopWidth > 0) {
+                offset = offset % loopWidth;
+            }
+        };
+
+        startScroll();
+
+        carousel.addEventListener('mouseenter', stopScroll);
+        carousel.addEventListener('mouseleave', startScroll);
+        window.addEventListener('resize', handleResize);
 
         return () => {
-            cancelAnimationFrame(animationFrameId);
-            carousel.removeEventListener('mouseenter', handleMouseEnter);
-            carousel.removeEventListener('mouseleave', handleMouseLeave);
+            stopScroll();
+            carousel.removeEventListener('mouseenter', stopScroll);
+            carousel.removeEventListener('mouseleave', startScroll);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
     return (
         <div className="testimonial-carousel" ref={carouselRef}>
-            <div className="scrolling-content">
-                {[...testimonials, ...testimonials].map((testimonial, index) => (
+            <div className="scrolling-content" ref={contentRef}>
+                {duplicatedTestimonials.map((testimonial, index) => (
                     <TestimonialCard key={index} {...testimonial} />
                 ))}
             </div>

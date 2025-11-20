@@ -5,21 +5,8 @@
 .scrolling-content {
     width: max-content;
     display: flex;
-    animation: scroll 5s linear infinite;
-}
-
-@keyframes scroll {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-    100% {
-        transform: translate3d(-50.2%, 0, 0);
-    }
-}
-
-
-.testimonial-carousel:hover .scrolling-content {
-    animation-play-state: paused;
+    gap: 0.5rem;
+    will-change: transform;
 }
 
 .testimonial-card {
@@ -35,10 +22,6 @@
     flex-direction: column;
     justify-content: space-between;
     user-select: none;
-}
-
-.testimonial-card:not(:last-child) {
-    margin-right: 1rem; /* Espaçamento entre os cards */
 }
 
 .testimonial-image {

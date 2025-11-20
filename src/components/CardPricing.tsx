@@ -10,7 +10,7 @@ const CardPricing: React.FC = () => {
           <h3>Básico</h3>
           <p>Baixe a ferramenta e comece a utilizar agora mesmo!</p>
           <h2>Grátis</h2>
-          <Button text="Baixar agora" secondary />
+          <Button text="Acesse agora" secondary />
           <hr className="card-separator" />
           <ul>
             <li><img src={Check} alt="ícone check" width={24} height={24} /> Com anúncios</li>
@@ -36,7 +36,7 @@ const CardPricing: React.FC = () => {
           <h3>Empresarial</h3>
           <p>Utilize nossa solução na sua empresa. Aprimore seu fluxo.</p>
           <h2>Personalizado</h2>
-          <Button text="Baixar agora" secondary />
+          <Button text="Acesse agora" secondary />
           <hr className="card-separator" />
           <ul>
             <li><img src={Check} alt="ícone check" width={24} height={24} /> Sem Anúncios</li>
