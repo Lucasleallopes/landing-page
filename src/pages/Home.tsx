@@ -13,7 +13,6 @@ import Menu from "../assets/hamburger.svg";
 import Button from '../components/Button.tsx';
 import myLogo from "../assets/logo/logo4.png";
 import Footer from '../components/Footer.tsx';
-import TestimonialCarousel from '../components/TestimonialCarousel.tsx';
 import CardSoluction from '../components/CardSoluction.tsx';
 import CardPricing from '../components/CardPricing.tsx';
 import ContactForm from '../components/ContactForm.tsx';
@@ -71,9 +70,9 @@ export default function Home() {
                             <li>
                                 <a href="#solucao" onClick={(e) => handleScroll(e, "solucao")}>Soluções</a>
                             </li>
-                            <li>
+                            {/* <li>
                                 <a href="#depoimentos" onClick={(e) => handleScroll(e, "depoimentos")}>Depoimentos</a>
-                            </li>
+                            </li> */}
                             <li>
                                 <a href="#precos" onClick={(e) => handleScroll(e, "precos")}>Preços</a>
                             </li>
@@ -101,9 +100,9 @@ export default function Home() {
                                         <li>
                                             <a href="#solucao" onClick={(e) => handleScroll(e, "solucao")}>Soluções</a>
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <a href="#depoimentos" onClick={(e) => handleScroll(e, "depoimentos")}>Depoimentos</a>
-                                        </li>
+                                        </li> */}
                                         <li>
                                             <a href="#precos" onClick={(e) => handleScroll(e, "precos")}>Preços</a>
                                         </li>
@@ -152,21 +151,21 @@ export default function Home() {
                 <div id="solucao" className="container content">
                     <p className="desktop-only">Soluções</p>
                     <h2>Sob medida para você</h2>
-                    <p>Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles. Veja tudo que pode ganhar com nossos serviços.</p>
+                    <p>Inovação é com a gente! O Verdex já conquistou diversas pessoas, seja você mais uma delas. Veja tudo que pode ganhar com nossos serviços.</p>
                 </div>
             </section>
             <CardSoluction />
 
-            <section id="cliente-importa" className="hero">
+            {/* <section id="cliente-importa" className="hero">
                 <div className="container content">
                     <p className="desktop-only">Conselho de quem conhece</p>
                     <h2>Cada cliente importa</h2>
                     <p id="depoimentos">Inovação é com a gente! O Verdex já conquistou diversos clientes, seja você mais um deles.</p>
                     <TestimonialCarousel />
                 </div>
-            </section>
+            </section> */}
 
-            <section id='hero'>
+            <section id='hero' className="pricing-hero">
                 <div className="container content">
                     <p className="desktop-only">Preços e planos</p>
                     <h2>Nossos planos</h2>

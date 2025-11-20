@@ -2,6 +2,8 @@ import { useState } from 'react';
 import '../styles/index.css';
 
 export default function ContactForm() {
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
@@ -15,6 +17,8 @@ export default function ContactForm() {
                 Accept: 'application/json',
             },
             body: JSON.stringify({
+                name,
+                phone,
                 email,
                 message,
                 _subject: 'Novo contato via landing page',
@@ -37,6 +41,8 @@ export default function ContactForm() {
             })
             .then(() => {
                 setStatus('Email enviado com sucesso!');
+                setName('');
+                setPhone('');
                 setEmail('');
                 setMessage('');
             })
@@ -49,29 +55,57 @@ export default function ContactForm() {
     return (
         <div className="container content">
             <p className="desktop-only">Envie sua dúvida</p>
-                <h2>Entre em Contato</h2>
-                    <p>
-                        Entre em contato, estamos dispostos a tirar qualquer dúvida, 
-                        seja um orçamento, uma dúvida técnica de algum de nossos produtos. 
-                        Estamos à disposição para responder.😎
-                    </p>
-            <form onSubmit={(e) => { e.preventDefault(); handleMail(); }}>
-                <div>
+            <h2>Entre em Contato</h2>
+            <p>
+                Entre em contato, estamos dispostos a tirar qualquer dúvida, 
+                seja um orçamento, uma dúvida técnica de algum de nossos produtos. 
+                Estamos à disposição para responder.😎
+            </p>
+            <form
+                className="contact-form"
+                onSubmit={(e) => { e.preventDefault(); handleMail(); }}
+            >
+                <div className="form-field">
+                    <label htmlFor="name">Nome</label>
+                    <input
+                        type="text"
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Seu nome completo"
+                        required
+                    />
+                </div>
+                <div className="form-field">
+                    <label htmlFor="phone">Celular</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        inputMode="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="(00) 00000-0000"
+                        required
+                    />
+                </div>
+                <div className="form-field">
                     <label htmlFor="email">Seu melhor email</label>
                     <input
                         type="email"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        placeholder="voce@email.com"
                         required
                     />
                 </div>
-                <div>
+                <div className="form-field full-width">
                     <label htmlFor="message">Mensagem</label>
                     <textarea
                         id="message"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
+                        rows={4}
                         required
                     />
                 </div>

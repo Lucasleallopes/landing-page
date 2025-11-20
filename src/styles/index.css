@@ -141,6 +141,50 @@ ul {
     color: var(--second-text-color);
 }
 
+.solution-card {
+    display: flex;
+    gap: 1.25rem;
+    text-align: left;
+    align-items: flex-start;
+}
+
+.solution-card h3 {
+    margin-bottom: 0;
+}
+
+.solution-card .card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.solution-card .card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 1rem;
+    background-color: rgba(25, 134, 76, 0.1);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.solution-card .card-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.solution-card .card-divider {
+    width: 80px;
+    height: 3px;
+    background-color: rgba(25, 134, 76, 0.3);
+    border-radius: 999px;
+    display: inline-block;
+    margin-bottom: 0.25rem;
+}
+
 @media (max-width: 300px) {
     .container.grid.center {
         grid-template-columns: 1fr;
@@ -167,6 +211,7 @@ ul {
     flex-wrap: wrap;
     padding-bottom: 50vh;
     /* margin-bottom: 7rem; */
+    background-color: #46FF9C;
 }
 
 .pricing-card {

@@ -14,7 +14,7 @@ const CardPricing: React.FC = () => {
           <hr className="card-separator" />
           <ul>
             <li><img src={Check} alt="ícone check" width={24} height={24} /> Com anúncios</li>
-            <li><img src={Check} alt="ícone check" width={24} height={24} /> Acesso a dados de até 2 estações</li>
+            <li><img src={Check} alt="ícone check" width={24} height={24} /> Acesso a dados limitados de estações</li>
             <li><img src={Check} alt="ícone check" width={24} height={24} /> Receba alertas básicos</li>
           </ul>
         </div>
